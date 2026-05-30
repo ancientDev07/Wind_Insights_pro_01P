@@ -1,0 +1,81 @@
+{
+    "app": {
+        "name": "Wind Wise Insights Pro",
+        "version": "1.0.0",
+        "theme": "dark",
+        "language": "en",
+        "title": "Wind Wise Insights Pro",
+        "style": "dark",
+        "splash_screen": {
+            "show": true,
+            "duration": 2000
+        }
+    },
+    "resources": {
+        "app_icon": {
+            "directory": "resources/app_icon",
+            "app_icon": "wwip_file.ico"
+        },
+        "images": {
+            "directory": "resources/images",
+            "splash": "splash.png"
+        },
+        "control_icons": {
+            "directory": "resources/control_icons"
+        },
+        "icons": {
+            "directory": "resources/icons"
+        },
+
+        "logos" :{
+            "directory" : "resources/logos"
+        }
+    },
+    "window": {
+        "width": 1200,
+        "height": 800,
+        "state": "maximized",
+        "menubar_visible": true
+    },
+    "data": {
+        "recent_files": [],
+        "max_recent": 10,
+        "auto_save": true,
+        "save_interval": 300,
+        "date_format": "%d/%m/%Y %H:%M",
+        "csv": {
+            "encoding": "utf-8",
+            "fallback_encodings": ["latin1", "iso-8859-1", "cp1252"],
+            "delimiter": ",",
+            "decimal": ".",
+            "thousands": ","
+        }
+    },
+    "analysis": {
+        "default_metrics": [
+            "power",
+            "wind_speed",
+            "direction"
+        ],
+        "time_window": "10min",
+        "outlier_threshold": 3,
+        "missing_data_strategy": "interpolate"
+    },
+    "visualization": {
+        "theme": "wwip_dark",
+        "colors": [
+            "#3498db",
+            "#2ecc71",
+            "#e74c3c",
+            "#f1c40f"
+        ],
+        "dpi": 100,
+        "grid": true,
+        "legend": true
+    },
+    "export": {
+        "default_format": "xlsx",
+        "chart_format": "png",
+        "report_template": "default"
+    }
+}

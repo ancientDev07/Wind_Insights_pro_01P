@@ -1,0 +1,57 @@
+graph LR
+    subgraph Input["Input Sources"]
+        I1["CSV/Excel Files"]
+        I2["Database Files"]
+        I3["SCADA Data"]
+    end
+    
+    subgraph Processing["Data Processing Pipeline"]
+        P1["File Handler<br/>Load Data"]
+        P2["Data Validation<br/>Schema Check"]
+        P3["Data Cleaning<br/>Remove Nulls/Duplicates"]
+        P4["Data Transformation<br/>Type Conversion"]
+        P5["SCADA Processing<br/>Turbine Aggregation"]
+    end
+    
+    subgraph Storage["Data Storage"]
+        S1["Memory Cache<br/>DataFrame"]
+        S2["SQLite Database<br/>Persisted"]
+        S3["Project File<br/>.wdip Format"]
+    end
+    
+    subgraph Analysis["Analysis & Visualization"]
+        A1["Statistical Analysis<br/>Binning/Metrics"]
+        A2["Time Series Analysis"]
+        A3["Turbine Performance<br/>Ranking"]
+        A4["Report Generation"]
+    end
+    
+    subgraph Output["User Output"]
+        O1["Data Table View"]
+        O2["Charts/Graphs"]
+        O3["Dashboard"]
+        O4["Exported Reports"]
+    end
+    
+    I1 --> P1
+    I2 --> P1
+    I3 --> P1
+    
+    P1 --> P2
+    P2 --> P3
+    P3 --> P4
+    P4 --> P5
+    
+    P5 --> S1
+    S1 --> S2
+    P5 --> S3
+    
+    S1 --> A1
+    S1 --> A2
+    S1 --> A3
+    A1 --> A4
+    
+    A1 --> O1
+    A2 --> O2
+    A3 --> O3
+    A4 --> O4

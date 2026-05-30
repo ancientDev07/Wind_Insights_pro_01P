@@ -1,0 +1,60 @@
+{
+  "version": "1.0",
+  "standard": "IEC 61400-12-1 & IEC 61400-25",
+  
+  "rules": {
+    "data_completeness": {
+      "enabled": true,
+      "threshold": 90,
+      "description": "Minimum data availability percentage",
+      "severity": "critical"
+    },
+    
+    "timestamp_continuity": {
+      "enabled": true,
+      "max_gap_seconds": 1200,
+      "description": "Maximum allowed gap between timestamps (2x interval)",
+      "severity": "high"
+    },
+    
+    "rate_of_change": {
+      "enabled": true,
+      "parameters": {
+        "power": 1000,
+        "wind_speed": 5,
+        "rotor_speed": 5,
+        "generator_speed": 200,
+        "voltage_phase_a": 100,
+        "voltage_phase_b": 100,
+        "voltage_phase_c": 100
+      },
+      "description": "Maximum change per 10-minute interval",
+      "severity": "medium"
+    },
+    
+    "range_validation": {
+      "enabled": true,
+      "parameters": {
+        "power": {"min": -100, "max": 5000},
+        "wind_speed": {"min": 0, "max": 40},
+        "rotor_speed": {"min": 0, "max": 25},
+        "nacelle_direction": {"min": 0, "max": 360},
+        "frequency": {"min": 49.5, "max": 50.5},
+        "voltage_phase_a": {"min": 300, "max": 800},
+        "voltage_phase_b": {"min": 300, "max": 800},
+        "voltage_phase_c": {"min": 300, "max": 800}
+      },
+      "description": "Physical/operational limits for parameters",
+      "severity": "high"
+    },
+    
+    "correlation_validation": {
+      "enabled": true,
+      "pairs": {
+        "power_wind_speed": {"params": ["power", "wind_speed"], "min_corr": 0.85}
+      },
+      "description": "Expected correlations between parameters",
+      "severity": "medium"
+    }
+  }
+}
