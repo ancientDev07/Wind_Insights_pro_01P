@@ -1,0 +1,86 @@
+.app-shell{
+
+    display:flex;
+
+    width:100vw;
+
+    height:100vh;
+}
+
+.sidebar{
+
+    width:260px;
+
+    background:
+        rgba(255,255,255,.04);
+
+    backdrop-filter:
+        blur(12px);
+
+    border-right:
+        1px solid
+        rgba(255,255,255,.08);
+
+    padding:24px;
+}
+
+.brand{
+
+    margin-bottom:40px;
+}
+
+.brand h2{
+
+    font-size:1rem;
+
+    line-height:1.5rem;
+
+    letter-spacing:1px;
+}
+
+.sidebar nav{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+}
+
+.nav-item{
+
+    width:100%;
+
+    text-align:left;
+
+    padding:12px 14px;
+
+    border-radius:12px;
+
+    background:transparent;
+
+    color:#d7dde7;
+}
+
+.nav-item:hover{
+
+    background:
+        rgba(255,255,255,.08);
+}
+
+.nav-item.active{
+
+    background:
+        rgba(37,99,235,.25);
+
+    color:white;
+}
+
+.content{
+
+    flex:1;
+
+    overflow:auto;
+
+    padding:24px;
+}
