@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant</title>
+    <link rel="stylesheet" href="ai_chat.css">
+</head>
+<body>
+    <div class="chat-container">
+        <!-- Header -->
+        <div class="chat-header">
+            <div class="header-left">
+                <h1 class="app-title">AI Assistant</h1>
+                <div class="status-line">
+                    <span class="status-dot" id="statusDot">●</span>
+                    <span class="status-text" id="statusText">Connecting...</span>
+                </div>
+            </div>
+            <!-- <div class="header-right">
+                <label class="toggle-switch" title="Use RAG">
+                    <input type="checkbox" id="ragToggle">
+                    <span class="toggle-slider"></span>
+                    <span class="toggle-label">RAG</span>
+                </label>
+                <button class="header-btn" id="indexBtn" title="Index Documents - Select folder">📁</button>
+                <button class="header-btn" id="settingsBtn" title="Settings">⚙️</button>
+                <button class="header-btn" id="clearBtn" title="Clear chat">🗑️</button>
+            </div> -->
+            <div class="header-right">
+                <div class="rag-status" id="ragStatus" style="display:none;">
+                    <span style="color: #10B981;">📚 RAG Ready</span>
+                </div>
+                <label class="toggle-switch" title="Use RAG">
+                    <input type="checkbox" id="ragToggle">
+                    <span class="toggle-slider"></span>
+                    <span class="toggle-label">RAG</span>
+                </label>
+                <button class="header-btn" id="indexBtn" title="Index Documents">📁</button>
+                <button class="header-btn" id="settingsBtn" title="Settings">⚙️</button>
+                <button class="header-btn" id="clearBtn" title="Clear chat">🗑️</button>
+            </div>
+        </div>
+
+        <!-- Chat Messages Area -->
+        <div class="chat-messages" id="chatMessages">
+            <div class="welcome-message">
+                <h2>Welcome to AI Assistant</h2>
+                <p>Ask me anything about wind turbine analysis and data.</p>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="chat-input-area">
+            <div class="input-container">
+                <textarea 
+                    id="messageInput" 
+                    class="message-input" 
+                    placeholder="Type your message here... (Shift+Enter for new line)"
+                    rows="3"></textarea>
+                <button class="send-button" id="sendBtn">➤</button>
+            </div>
+            <div class="input-footer">
+                <span class="char-count" id="charCount">0 / 8000</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="modal-close" id="closeSettings">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <label for="ollama_host">Ollama Host:</label>
+                    <input type="text" id="ollama_host" placeholder="http://localhost:11434">
+                    <small>Default: http://localhost:11434</small>
+                </div>
+                <div class="setting-group">
+                    <label for="model_select">Model:</label>
+                    <select id="model_select">
+                        <option value="gemma4:e4b">gemma4:e4b (Recommended)</option>
+                        <option value="gemma4:e2b">gemma4:e2b (Fast)</option>
+                        <option value="gemma4:latest">gemma4:latest (Accurate)</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <button class="btn-primary" id="testConnection">Test Connection</button>
+                    <button class="btn-secondary" id="diagBtn">🔍 Diagnostics</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="settingsCancel">Cancel</button>
+                <button class="btn-primary" id="settingsSave">Save</button>
+            </div>
+        </div>
+    </div>
+    <script src="qrc:///qtwebchannel/qwebchannel.js"></script>
+    <script src="ai_chat.js"></script>
+    <script>
+        new QWebChannel(qt.webChannelTransport, function(channel) {
+            window.chatBackend = channel.objects.chatBackend;
+            
+            // Connect signals after backend is ready
+            if (chatUI) {
+                chatUI.connectBackendSignals();
+            } else {
+                // Wait for DOM load
+                document.addEventListener('DOMContentLoaded', () => {
+                    if (chatUI) {
+                        chatUI.connectBackendSignals();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
